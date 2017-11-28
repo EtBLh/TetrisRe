@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.ControllerStart" fx:id="background">
+    <stylesheets>
+        <URL value="@../style/StarTheme.css" />
+    </stylesheets>
+      <AnchorPane fx:id="componentPane" prefHeight="1080" prefWidth="1920" AnchorPane.topAnchor="0.0">
+
+         <children>
+            <ImageView fitHeight="440.0" fitWidth="1200.0" layoutX="405.0" layoutY="95.0" AnchorPane.bottomAnchor="540.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="100.0">
+               <image>
+                  <Image url="@../assets/strings/TetrisTiltle.png" />
+               </image>
+            </ImageView>
+            <ToolBar fx:id="ToolBar" prefHeight="100.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+              <items>
+                <Button mnemonicParsing="false" styleClass="showPropLabel" text="Button" />
+                  <Button layoutX="10.0" layoutY="30.0" mnemonicParsing="false" styleClass="showPropLabel" text="Button" />
+              </items>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </ToolBar>
+            <HBox layoutX="237.0" layoutY="605.0" prefHeight="150.0" prefWidth="1500.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+</AnchorPane>

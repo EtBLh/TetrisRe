@@ -1,0 +1,19 @@
+#CLOSE_BUTTON {
+    -fx-pref-width: 75px;
+    -fx-pref-height: 75px;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30;
+    -fx-background-image: url("../assets/buttons/close.png");
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+#CLOSE_BUTTON:hover {
+    -fx-background-color: rgb(252, 57, 98);
+}
+
+#CLOSE_BUTTON:pressed {
+    -fx-background-color: rgb(232, 37, 78);
+}

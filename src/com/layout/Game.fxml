@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.net.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="background" prefHeight="1080" prefWidth="1920" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.ControllerGame">
+    <stylesheets>
+        <URL value="@../style/StarTheme.css" />
+    </stylesheets>
+    <children>
+        <AnchorPane fx:id="componentPane" prefHeight="1080" prefWidth="1920">
+            <children>
+                <VBox alignment="CENTER" layoutX="256.0" layoutY="40.0" styleClass="ElementBoxPicture">
+                    <children>
+                        <Label styleClass="ElementTitle" text="Next" />
+                        <ImageView fx:id="nextShower" fitHeight="119.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                        </ImageView>
+                    </children>
+                </VBox>
+                <VBox layoutX="256.0" layoutY="400.0" styleClass="ElementBox">
+                    <children>
+
+                        <Label styleClass="ElementTitle" text="Score" />
+                        <Label fx:id="scoreShower" layoutX="10.0" layoutY="10.0" styleClass="Element" />
+                    </children>
+                </VBox>
+                <VBox layoutX="256.0" layoutY="600.0" styleClass="ElementBox">
+                    <children>
+                        <Label styleClass="ElementTitle" text="Level" />
+                        <Label fx:id="levelShower" layoutX="10.0" layoutY="10.0" styleClass="Element" />
+                    </children>
+                </VBox>
+                <VBox layoutX="256.0" layoutY="800.0" styleClass="ElementBox">
+                    <children>
+                        <Label styleClass="ElementTitle" text="Lines" />
+                        <Label fx:id="linesShower" layoutX="10.0" layoutY="10.0" styleClass="Element" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="1400.0" layoutY="40.0" prefHeight="260.0" prefWidth="300.0" styleClass="ElementBoxPicture">
+                    <children>
+                        <Label styleClass="ElementTitle" text="Hold" />
+                        <ImageView fx:id="holdShower" fitHeight="119.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                        </ImageView>
+                    </children>
+                </VBox>
+                <StackPane fx:id="GameAreaPane" layoutX="700.0" layoutY="40.0" prefHeight="1000" prefWidth="500">
+                    <children>
+                        <Canvas fx:id="GameArea" height="1000.0" layoutX="700.0" layoutY="40.0" width="500.0" />
+                    </children>
+                </StackPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
