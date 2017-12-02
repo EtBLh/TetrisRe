@@ -1,0 +1,49 @@
+@font-face {
+    src: url('Audiowide.ttf');
+}
+
+#msgPane{
+    -fx-background-color: rgba(0,0,0,0.3);
+}
+#msgTitle{
+    -fx-font-family: 'Audiowide';
+    -fx-font-size: 72px;
+}
+
+#msgCloseButton{
+    -fx-font-family: 'Audiowide';
+    -fx-font-size: 24px;
+    -fx-background-color: #eeeeee;
+    -fx-border-color: #20B2AA;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #20B2AA;
+}
+
+#msgCloseButton:hover{
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #eeeeee;
+}
+
+#msgCloseButton:pressed{
+    -fx-border-color: #16a8a0;
+    -fx-background-color: #16a8a0;
+}
+
+.background{
+    -fx-background-color: rgba(0,0,0,0.3);
+}
+
+#input{
+    -fx-font-size: 24px;
+    -fx-background-color: #eeeeee;
+    -fx-border-color: #20B2AA;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #20B2AA;
+}
+
+#input:hover{
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #eeeeee;
+}

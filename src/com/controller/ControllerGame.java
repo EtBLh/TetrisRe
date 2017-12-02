@@ -6,11 +6,14 @@ import com.service.Service;
 import com.service.gameAreaService;
 import com.processer.processor;
 import com.service.gameService;
+import com.util.msgBox.MsgPane;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -18,13 +21,16 @@ import java.util.ResourceBundle;
 
 public class ControllerGame implements Initializable {
 
-    public Canvas GameArea;
-    public AnchorPane background;
-    public Label scoreShower;
-    public Label levelShower;
-    public Label linesShower;
-    public ImageView holdShower;
-    public ImageView nextShower;
+    @FXML private Canvas GameArea;
+    @FXML private AnchorPane background;
+    @FXML private Label scoreShower;
+    @FXML private Label levelShower;
+    @FXML private Label linesShower;
+    @FXML private ImageView holdShower;
+    @FXML private ImageView nextShower;
+    @FXML private AnchorPane componentPane;
+    @FXML private MsgPane msgPane;
+
 
     /**
      * the GraphicsContext of Game Area
@@ -108,7 +114,7 @@ public class ControllerGame implements Initializable {
         //initialize game area service
         this.gameAreaService = new gameAreaService(gameDto, gameGC);
         //initialize service
-        this.gameService = new gameService(gameDto, gameAreaService);
+        this.gameService = new gameService(gameDto, gameAreaService,componentPane);
 
         //set Showers
         this.gameService.setScoreShower(scoreShower);
@@ -116,7 +122,9 @@ public class ControllerGame implements Initializable {
         this.gameService.setLinesShower(linesShower);
         this.gameService.setNextShower(nextShower);
         this.gameService.setHoldShower(holdShower);
+        this.gameService.setMsgPane(msgPane);
 
         this.start();
     }
+
 }

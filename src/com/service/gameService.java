@@ -6,11 +6,14 @@ import com.processer.processor;
 import com.util.ScoreCalculation;
 import com.entity.GameAct;
 import com.util.SpeedCalculation;
+import com.util.msgBox.MsgPane;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 import com.util.Point;
@@ -31,6 +34,8 @@ public class gameService implements Service {
     private Label linesShower;
     private ImageView nextShower;
     private ImageView holdShower;
+    private AnchorPane componentPane;
+    private MsgPane msgPane;
 
     @Override
     public void setScoreShower(Label scoreShower) {
@@ -58,15 +63,32 @@ public class gameService implements Service {
     }
 
     @Override
+    public void setMsgPane(MsgPane msgPane) {
+        this.msgPane = msgPane;
+    }
+
+    public gameService(GameDto dto, gameAreaService gameAreaService, AnchorPane componentPane) {
+        this.dto = dto;
+        this.componentPane = componentPane;
+        GameAct act = new GameAct(this.dto.getRandomType());
+        dto.setNextBlock(this.dto.getRandomType());
+        dto.setGameAct(act);
+        updatePreviewAct();
+        GameMap = this.dto.getGameMap();
+        this.gameAreaService = gameAreaService;
+        this.processor = new processor(this);
+    }
+
+    @Override
     public void start() {
         this.processor.start();
     }
 
-    private void stop(){
+    private void stop() {
         this.processor.stop();
     }
 
-    private void processDurationUpdate(){
+    private void processDurationUpdate() {
         this.processor.update(SpeedCalculation.getDelay(dto.getLevel()));
     }
 
@@ -79,19 +101,8 @@ public class gameService implements Service {
         try {
             this.nextShower.setImage(bImgAccesser.blocks[dto.getNextBlock() - 1]);
             this.holdShower.setImage(bImgAccesser.blocks[dto.getHoldBlock() - 1]);
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         }
-        catch (ArrayIndexOutOfBoundsException ignored){}
-    }
-
-    public gameService(GameDto dto, gameAreaService gameAreaService) {
-        this.dto = dto;
-        GameAct act = new GameAct(this.dto.getRandomType());
-        dto.setNextBlock(this.dto.getRandomType());
-        dto.setGameAct(act);
-        updatePreviewAct();
-        GameMap = this.dto.getGameMap();
-        this.gameAreaService = gameAreaService;
-        this.processor = new processor(this);
     }
 
     /**
@@ -136,7 +147,7 @@ public class gameService implements Service {
         //等級計算
         this.dto.setLevel(this.dto.getClearedLines() / 10 + 1);
         //輸
-        this.Lose();
+        this.checkLose();
         //製造下一個方塊
         this.produceNewAct();
         //刷新預覽
@@ -282,9 +293,7 @@ public class gameService implements Service {
 
         KeyFrame animation1 = new KeyFrame(Duration.ZERO, e -> {
             this.dto.getclearLinesAnimationStatus().clear();
-            clearLines.forEach(integer -> {
-                this.dto.getclearLinesAnimationStatus().add(integer);
-            });
+            clearLines.forEach(integer -> this.dto.getclearLinesAnimationStatus().add(integer));
             reload();
         });
 
@@ -295,9 +304,7 @@ public class gameService implements Service {
 
         KeyFrame animation2 = new KeyFrame(Duration.millis(DELAY), e -> {
             this.dto.getclearLinesAnimationStatus().clear();
-            clearLines.forEach(integer -> {
-                this.dto.getclearLinesAnimationStatus().add(integer);
-            });
+            clearLines.forEach(integer -> this.dto.getclearLinesAnimationStatus().add(integer));
             reload();
         });
 
@@ -323,17 +330,18 @@ public class gameService implements Service {
     /**
      * 檢查輸
      */
-    private void Lose() {
+    private void checkLose() {
         int[][] GameMap = this.dto.getGameMap();
         for (int x = 0; x < GameMap.length; x++) {
             for (int y = 1; y >= 0; y--) {
-                if (GameMap[x][y] > 0) this.LoseAction();
+                if (GameMap[x][y] > 0) {this.lose(); break; }
             }
         }
+
     }
 
-    private void LoseAction() {
+    private void lose() {
         this.stop();
-        //TODO
+        this.msgPane.setShow(true);
     }
 }

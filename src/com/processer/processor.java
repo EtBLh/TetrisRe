@@ -2,48 +2,56 @@ package com.processer;
 
 import com.service.Service;
 import javafx.application.Platform;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class processor {
 
-    private Timer process;
+    private Thread process;
     private Service service;
+    private int duration = 1000;
+    private boolean isProcessing = true;
 
     public processor(Service service) {
         this.service = service;
-        process = new Timer();
+        process = new Thread(new task());
     }
 
     /**
      * stop the process
      */
     public void stop() {
-        process.cancel();
+        this.isProcessing = false;
     }
 
     /**
      * start the process
      */
     public void start() {
-        process.schedule(new task(), 0, 1000);
+        process.start();
     }
 
     /**
-     *
      * update the duration time
-     * @param period
      */
-    public void update(int period) {
-        //TODO
+    public void update(int duration) {
+        this.duration = duration;
     }
 
 
-    class task extends TimerTask {
+    class task implements Runnable {
         @Override
         public void run() {
+            try {
+                loop();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                if(isProcessing)run();
+            }
+        }
+
+        private void loop() throws InterruptedException {
             Platform.runLater(service::ActDown);
+            Thread.sleep(duration);
         }
     }
-
 }

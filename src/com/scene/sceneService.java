@@ -46,7 +46,7 @@ public class sceneService {
     public sceneService(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.initStyle(StageStyle.UNDECORATED);
-        this.primaryStage.setAlwaysOnTop(true);
+//        this.primaryStage.setAlwaysOnTop(true);
         this.primaryStage.setX(0);
         this.primaryStage.setY(0);
     }
